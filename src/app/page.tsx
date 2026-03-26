@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { prisma } from "@/lib/prisma";
-import ApplicationList from "@/components/ApplicationList";
 import ApplicationPage from "@/components/ApplicationPage";
 
 export default async function Home() {
@@ -9,9 +7,11 @@ export default async function Home() {
   });
 
   return (
-    <main>
-      <h1 className="text-3xl font-bold mb-4">Current Applications</h1>
-      <ApplicationPage initialApplications={applications} />
+    <main className="min-h-screen bg-gray-950 text-white">
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <h1 className="text-3xl font-bold mb-8">Application Tracker</h1>
+        <ApplicationPage initialApplications={applications} />
+      </div>
     </main>
   );
 }

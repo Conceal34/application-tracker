@@ -74,51 +74,47 @@ export default function ApplicationForm({ application, onSuccess }: Props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-6 flex flex-col gap-4"
+      >
+        <h2 className="text-lg font-semibold mb-2">
+          {application ? "Edit Application" : "New Application"}
+        </h2>
         <input
           type="text"
-          placeholder="company"
+          placeholder="Company *"
           value={company}
-          onChange={(e) => {
-            setCompany(e.target.value);
-          }}
+          onChange={(e) => setCompany(e.target.value)}
           required
-          className="border p-2 rounded"
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
-          placeholder="role"
+          placeholder="Role *"
           value={role}
-          onChange={(e) => {
-            setRole(e.target.value);
-          }}
+          onChange={(e) => setRole(e.target.value)}
           required
-          className="border p-2 rounded"
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
-          placeholder="platform"
+          placeholder="Platform (LinkedIn, Internshala...)"
           value={platform}
-          onChange={(e) => {
-            setPlatform(e.target.value);
-          }}
-          className="border p-2 rounded"
+          onChange={(e) => setPlatform(e.target.value)}
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
         <input
-          type="text"
-          placeholder="JOB url"
+          type="url"
+          placeholder="Job URL"
           value={url}
-          onChange={(e) => {
-            setUrl(e.target.value);
-          }}
-          className="border p-2 rounded"
+          onChange={(e) => setUrl(e.target.value)}
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
         <select
           value={status}
-          onChange={(e) => {
-            setStatus(e.target.value as Status);
-          }}
-          className="border p-2 rounded"
+          onChange={(e) => setStatus(e.target.value as Status)}
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg focus:outline-none focus:border-blue-500"
         >
           <option value="Applied">Applied</option>
           <option value="Viewed">Viewed</option>
@@ -126,34 +122,42 @@ export default function ApplicationForm({ application, onSuccess }: Props) {
           <option value="Offer">Offer</option>
           <option value="Rejected">Rejected</option>
         </select>
-        <input
-          type="date"
-          value={followUpDate}
-          onChange={(e) => {
-            e.target.value;
-          }}
-          className="border p-2 rounded"
-        />
+        <div className="flex flex-col gap-1">
+          <label className="text-gray-400 text-sm">Follow-up Date</label>
+          <input
+            type="date"
+            value={followUpDate}
+            onChange={(e) => setFollowUpDate(e.target.value)}
+            className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg focus:outline-none focus:border-blue-500"
+          />
+        </div>
         <textarea
-          placeholder="notes"
+          placeholder="Notes"
           value={notes}
-          onChange={(e) => {
-            e.target.value;
-          }}
-          className="border p-2 rounded"
+          onChange={(e) => setNotes(e.target.value)}
+          className="bg-gray-800 border border-gray-700 text-white p-2 rounded-lg placeholder-gray-500 focus:outline-none focus:border-blue-500"
           rows={3}
         />
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 disabled:opacity-50"
-        >
-          {loading
-            ? "Saving..."
-            : application
-              ? "Update Application"
-              : "Add Application"}
-        </button>
+        <div className="flex gap-3">
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
+          >
+            {loading
+              ? "Saving..."
+              : application
+                ? "Update Application"
+                : "Add Application"}
+          </button>
+          <button
+            type="button"
+            onClick={() => onSuccess()}
+            className="border border-gray-700 hover:bg-gray-800 text-gray-400 px-4 py-2 rounded-lg transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
