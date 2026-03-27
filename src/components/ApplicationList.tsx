@@ -53,12 +53,16 @@ export default function ApplicationList({
               <p className="text-gray-500 text-xs">
                 Applied {app.appliedDate.toLocaleDateString()}
               </p>
-              {currentDate.getTime() > app.followUpDate?.getTime() ? (
-                <p className="text-xs text-red-500 font-medium">
-                  Follow-up: {app.followUpDate?.toLocaleDateString()}
+              {app.followUpDate && (
+                <p
+                  className={
+                    currentDate.getTime() > app.followUpDate.getTime()
+                      ? "text-red-500 text-xs font-medium"
+                      : ""
+                  }
+                >
+                  Follow-up: {app.followUpDate.toLocaleDateString()}
                 </p>
-              ) : (
-                <p>Follow-up: {app.followUpDate?.toLocaleDateString()}</p>
               )}
             </div>
             <div className="flex gap-2">

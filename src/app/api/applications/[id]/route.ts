@@ -27,7 +27,7 @@ export async function GET(
   } catch (error) {
     return NextResponse.json(
       {
-        error: `Failed to fetch application with id ${params.id}. error: ${error}`,
+        error: `Failed to fetch application with id ${id}. error: ${error}`,
       },
       { status: 500 },
     );
@@ -52,7 +52,9 @@ export async function PUT(
         platform: platform || null,
         url: url || null,
         status,
-        followUpDate: followUpDate ? new Date(followUpDate).toISOString() : null,
+        followUpDate: followUpDate
+          ? new Date(followUpDate).toISOString()
+          : null,
         notes,
       },
     });
