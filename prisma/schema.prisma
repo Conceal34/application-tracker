@@ -13,17 +13,17 @@ datasource db {
 }
 
 model Application {
-  id            Int       @id @default(autoincrement())
-  company       String
-  role          String
-  platform      String?
-  url           String?
-  status        Status    @default(Applied)
-  appliedDate   DateTime  @default(now())
-  followUpDate  DateTime?
-  notes         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id           Int       @id @default(autoincrement())
+  company      String
+  role         String
+  platform     String?
+  url          String?
+  status       Status    @default(Applied)
+  appliedDate  DateTime  @default(now())
+  followUpDate DateTime?
+  notes        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
 enum Status {
