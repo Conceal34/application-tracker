@@ -21,11 +21,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push image
+      - name: Build and push runner image
         uses: docker/build-push-action@v5
         with:
           context: .
+          target: runner
           push: true
           tags: conceal34/application-tracker:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build and push migrator image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          target: migrator
+          push: true
+          tags: conceal34/application-tracker:migrator
           cache-from: type=gha
           cache-to: type=gha,mode=max

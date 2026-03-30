@@ -22,7 +22,7 @@ jobs:
             cd ~/app
 
             echo "Pulling latest image..."
-            docker pull ${{ secrets.DOCKER_USERNAME }}/application-tracker:latest
+            docker compose -f docker-compose.prod.yaml pull
 
             echo "Restarting services..."
             docker compose -f docker-compose.prod.yaml up -d --remove-orphans
